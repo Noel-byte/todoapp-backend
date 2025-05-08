@@ -2,7 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import todoRoutes from './routes/todoRouter.js';
+import todoRoutes from './routes/todoRoutes.js';
+import userRoutes from './routes/userRoutes.js'
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 //mounting routers
 app.use('/api/todos', todoRoutes);
+app.use('/api/users', userRoutes);
 
 //handlers - routing
 
