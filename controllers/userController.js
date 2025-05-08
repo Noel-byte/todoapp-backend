@@ -27,6 +27,9 @@ export const registerUser = asyncHandler(async (req,res)=>{
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password,salt)
 
+
+    console.log('User create request:', { email, password });
+
     //create user
     const user = await  User.create({
         email,
