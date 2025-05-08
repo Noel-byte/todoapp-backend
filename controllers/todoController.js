@@ -12,7 +12,7 @@ export const createTodo =  asyncHandler ( async (req,res)=>{
         res.status(201).json(saveTask)
     }else{
         res.status(400)
-        throw new error ('Invalid data')
+        throw new Error ('Invalid data')
     }
  
 })
