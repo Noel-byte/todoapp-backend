@@ -29,12 +29,13 @@ export const registerUser = asyncHandler(async (req,res)=>{
 
     //create user
     const user = await  User.create({
-        email,password:hashedPassword
+        email,
+        password:hashedPassword,
     })
 
    if(user){
     res.status(201).json({
-        id:user._id,
+        _id:user.id,
         email:user.email
     })
    }else{
