@@ -1,11 +1,6 @@
-const registerUser = (req,res)=>{
+export const registerUser = (req,res)=>{
     
     res.json({message:'Register user'})
     
 }
 
-
-
-module.exports={
-    registerUser,
-}
