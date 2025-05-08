@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs'
 import asyncHandler from 'express-async-handler'
 import User from '../models/User.js'
 
+
 //@desc Register new user
 //@route   POST /api/users
 //@access Public
@@ -38,7 +39,8 @@ export const registerUser = asyncHandler(async (req,res)=>{
    if(user){
     res.status(201).json({
         _id:user.id,
-        email:user.email
+        email:user.email,
+        token:generateToken(user._id)
     })
    }else{
     res.status(400)
@@ -58,7 +60,9 @@ export const loginUser = asyncHandler( async (req,res)=>{
     if(user && (await bcrypt.compare(password,user.password))){
         res.json({
             _id:user.id,
-        email:user.email
+        email:user.email,
+        token:generateToken(user._id)
+
         })
     }else{
         res.status(400)
@@ -70,10 +74,23 @@ export const loginUser = asyncHandler( async (req,res)=>{
 
 //@desc  Get user data
 //@route   GET /api/users/me
-//@access Public
+//@access Private
 export const getUser = asyncHandler(async (req,res)=>{
     
-    res.json({message:'get user'})
+   const {_id,email} = await User.findById(req.user.id)
+
+   res.status(200).json({
+    id:_id,
+    email,
+   })
     
 })
+
+
+//Generate JWT
+const generateToken = (id) =>{
+    return jwt.sign({id},process.env.JWT_SECRET,{
+        expiresIn:'30d',
+    })
+}
 
