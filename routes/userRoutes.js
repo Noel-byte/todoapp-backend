@@ -6,4 +6,4 @@ const {registerUser} = require('../controllers/userController')
 
 router.post('/',registerUser)
 
-module.exports=router
+export default router
