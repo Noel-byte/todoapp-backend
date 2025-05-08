@@ -1,21 +1,23 @@
 import express from 'express'
 import Todo from '../models/Todo.js'
+import { createTodo } from '../controllers/todoController.js'
 
 const router = express.Router()
 
-// POST api/todos  -- create new task
-router.post('/', async (req,res)=>{
 
-    try{
-        const {text} = req.body
-        const newTask = new Todo({text}) //create new task
-        const saveTask = await newTask.save()
-        res.status(201).json(saveTask)
-    }catch(err){
-        res.status(500).json({error:'Failed to add task'})
-    }
+
+// POST api/todos  -- create new task
+router.post('/',createTodo)
+
+// router.post('/', async (req,res)=>{
+
+//     try{
+        
+//     }catch(err){
+       
+//     }
   
-})
+// })
 
 router.get('/:status',async(req,res)=>{
     let query ={}
