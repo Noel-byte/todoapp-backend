@@ -1,5 +1,6 @@
 import express from 'express'
 import { createTodo,filterTodo,deleteTodo,updateTodo, deleteAll } from '../controllers/todoController.js'
+import { protect } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
@@ -11,12 +12,12 @@ router.post('/',createTodo)
 router.get('/:status',filterTodo)
 
 //DELETE api/todos -- delete todos
-router.delete('/:id',deleteTodo)
+router.delete('/:id',protect,deleteTodo)
 
 //PUT api/todos -- update todos
-router.put('/:id',updateTodo)
+router.put('/:id',protect,updateTodo)
 
 //DELETE   api/todos -- delete all todos
-router.delete('/',deleteAll)
+router.delete('/',protect,deleteAll)
 
 export default router
