@@ -6,7 +6,7 @@ const router = express.Router()
 
 
 // POST api/todos  -- create new task
-router.post('/',createTodo)
+router.post('/',protect,createTodo)
 
 //GET  api/todos -- filter todos
 router.get('/:status',filterTodo)
