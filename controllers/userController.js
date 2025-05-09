@@ -77,7 +77,7 @@ export const loginUser = asyncHandler( async (req,res)=>{
 //@access Private
 export const getUser = asyncHandler(async (req,res)=>{
     
-   const {_id,email} = await User.findById(req.user.id)
+   const {_id,email} = await User.findById(req.User.id)
 
    res.status(200).json({
     id:_id,
