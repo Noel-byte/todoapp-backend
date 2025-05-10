@@ -10,10 +10,7 @@ dotenv.config();
 const app = express();
 
 //middleware
-app.use(cors({
-  origin: 'https://todofrontapp.netlify.app',  // ✅ allow your frontend domain
-  credentials: true
-}));
+app.use(cors());
 
 
 app.use(express.json());
