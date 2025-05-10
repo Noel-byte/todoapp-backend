@@ -10,7 +10,6 @@ import User from '../models/User.js'
 
 export const registerUser = asyncHandler(async (req,res)=>{
     const {email,password} = req.body
- console.log(email,password)
     if(!email||!password){
         res.status(400)
         throw new Error('Please add all fields')
@@ -38,9 +37,9 @@ export const registerUser = asyncHandler(async (req,res)=>{
 
    if(user){
     res.status(201).json({
-        _id:user._id,
+        _id:user.id,
         email:user.email,
-        token:generateToken(user._id)
+        token:generateToken(user.id)
     })
    }else{
     res.status(400)
@@ -60,9 +59,9 @@ export const loginUser = asyncHandler( async (req,res)=>{
 
     if(user && (await bcrypt.compare(password,user.password))){
         res.json({
-            _id:user._id,
+            _id:user.id,
         email:user.email,
-        token:generateToken(user._id)
+        token:generateToken(user.id)
 
         })
     }else{

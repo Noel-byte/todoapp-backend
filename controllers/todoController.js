@@ -4,8 +4,8 @@ import asyncHandler from 'express-async-handler';
 import Todo from '../models/Todo.js';
 
 export const createTodo = asyncHandler(async (req, res) => {
-  const { text } = req.body;
-  const newTask = new Todo({ text,user:req.user.id }); //create new task
+  
+  const newTask = new Todo({ text: req.body.text,user:req.user.id }); //create new task
   const saveTask = await newTask.save();
 
   if (saveTask) {
