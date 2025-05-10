@@ -9,7 +9,7 @@ const router = express.Router()
 router.post('/',protect,createTodo)
 
 //GET  api/todos -- filter todos
-router.get('/:status',filterTodo)
+router.get('/:status',protect,filterTodo)
 
 //DELETE api/todos -- delete todos
 router.delete('/:id',protect,deleteTodo)

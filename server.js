@@ -10,8 +10,9 @@ dotenv.config();
 const app = express();
 
 //middleware
-app.use(cors({origin: 'https://todofrontapp.netlify.app'
-}));
+app.use(cors());
+// app.use(cors({ origin: ['http://localhost:5173', 'https://todofrontapp.netlify.app'] }));
+
 
 
 app.use(express.json());

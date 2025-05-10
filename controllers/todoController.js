@@ -4,7 +4,7 @@ import asyncHandler from 'express-async-handler';
 import Todo from '../models/Todo.js';
 
 export const createTodo = asyncHandler(async (req, res) => {
-  
+
   const newTask = new Todo({ text: req.body.text,user:req.user.id }); //create new task
   const saveTask = await newTask.save();
 
@@ -17,9 +17,12 @@ export const createTodo = asyncHandler(async (req, res) => {
 });
 
 export const filterTodo = asyncHandler(async (req, res) => {
-  let query = {};
+    console.log(req.user.id)
+  let query = {user:req.user.id};
 
   const { status } = req.params;
+ console.log(status)
+
 
   if (!status) {
     res.status(400);
