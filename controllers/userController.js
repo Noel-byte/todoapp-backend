@@ -10,7 +10,7 @@ import User from '../models/User.js'
 
 export const registerUser = asyncHandler(async (req,res)=>{
     const {email,password} = req.body
-
+ console.log(email,password)
     if(!email||!password){
         res.status(400)
         throw new Error('Please add all fields')
