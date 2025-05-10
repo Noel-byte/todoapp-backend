@@ -60,6 +60,7 @@ export const updateTodo = asyncHandler(async (req, res) => {
 
 export const deleteAll = asyncHandler(async (req, res) => {
   const userid = req.params.userid
+  console.log(userid)
   if (await Todo.deleteMany({user:userid})) {
     res.status(200).json({ message: 'tasks cleared' });
   } else {
