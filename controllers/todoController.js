@@ -58,11 +58,12 @@ export const updateTodo = asyncHandler(async (req, res) => {
   res.status(200).json({ message: 'updated successfully' });
 });
 
-// export const deleteAll = asyncHandler(async (req, res) => {
-//   if (await Todo.deleteMany({})) {
-//     res.status(200).json({ message: 'tasks cleared' });
-//   } else {
-//     res.status(400);
-//     throw new Error('could not clear');
-//   }
-// });
+export const deleteAll = asyncHandler(async (req, res) => {
+  const userid = req.params.userid
+  if (await Todo.deleteMany({user:userid})) {
+    res.status(200).json({ message: 'tasks cleared' });
+  } else {
+    res.status(400);
+    throw new Error('could not clear');
+  }
+});

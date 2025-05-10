@@ -1,5 +1,5 @@
 import express from 'express'
-import { createTodo,filterTodo,deleteTodo,updateTodo, deleteAll } from '../controllers/todoController.js'
+import { createTodo,filterTodo,deleteTodo,updateTodo,deleteAll} from '../controllers/todoController.js'
 import { protect } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
@@ -18,6 +18,6 @@ router.delete('/:id',protect,deleteTodo)
 router.put('/:id',protect,updateTodo)
 
 //DELETE   api/todos -- delete all todos
-// router.delete('/:id',protect,deleteAll)
+router.delete('/user/:userid',protect,deleteAll)
 
 export default router
