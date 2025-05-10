@@ -18,6 +18,6 @@ router.delete('/:id',protect,deleteTodo)
 router.put('/:id',protect,updateTodo)
 
 //DELETE   api/todos -- delete all todos
-router.delete('/',protect,deleteAll)
+// router.delete('/:id',protect,deleteAll)
 
 export default router
