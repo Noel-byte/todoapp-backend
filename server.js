@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import todoRoutes from './routes/todoRoutes.js';
 import userRoutes from './routes/userRoutes.js'
+import path from 'path'
 
 dotenv.config();
 
@@ -19,6 +20,11 @@ app.use(cors({
   credentials: true, 
 }));
 
+app.use(express.static(path.join(__dirname,'build')))
+
+app.get('*',(req,res)=>{
+  res.sendFile(path.join(__dirname,'build','index.html'))
+})
 
 
 app.use(express.json());
