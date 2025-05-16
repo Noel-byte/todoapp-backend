@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import asyncHandler from 'express-async-handler'
 import User from '../models/User.js'
+import mongoose from 'mongoose';
 
 
 //@desc Register new user
@@ -93,4 +94,23 @@ const generateToken = (id) =>{
         expiresIn:'30d',
     })
 }
+
+
+//get user by id 
+
+export const getUserById = async (req, res) => {
+  const { userId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    return res.status(400).json({ message: 'Invalid user ID' });
+  }
+
+  try {
+    const user = await User.findById(userId).select('email'); // or just 'email'
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 
