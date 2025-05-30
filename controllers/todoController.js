@@ -17,7 +17,7 @@ export const createTodo = asyncHandler(async (req, res) => {
 });
 
 export const filterTodo = asyncHandler(async (req, res) => {
-    console.log(req.user.id)
+    // console.log(req.user.id)
   let query = {user:req.user.id};
 
   const { status } = req.params;
