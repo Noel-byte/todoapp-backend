@@ -66,17 +66,6 @@ export const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-//@desc  Get user data
-//@route   GET /api/users/me
-//@access Private
-export const getUser = asyncHandler(async (req, res) => {
-  const { _id, email } = await User.findById(req.user.id);
-
-  res.status(200).json({
-    id: _id,
-    email,
-  });
-});
 
 //Generate JWT
 const generateToken = (id) => {
@@ -88,7 +77,7 @@ const generateToken = (id) => {
 //get user by id
 
 export const getUserById = async (req, res) => {
-  //   const { userId } = req.params;
+
   const userId = req.user.id;
 
   if (!mongoose.Types.ObjectId.isValid(userId)) {
